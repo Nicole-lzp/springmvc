@@ -1,0 +1,8 @@
+先搭建springmvc框架
+在contortller包中创建LoginController类
+创建web.xml和springmvc.xml
+运行检测
+
+在搭建mybatis框架
+框架体系(controller控制器/dao数据库接口/model实体类/service具体实现//mybatis.mapper操作数据库/)
+需要的xml(mybatis-config.xml/spring-dao.xml/spring-service.xml/jdbc.properties)
