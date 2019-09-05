@@ -4,11 +4,28 @@
 	
 <mapper namespace="cn.com.git.dao.UserDao">
 
+	<!-- 根据用户名查找用户 -->
 	<select id="findByName" resultType="cn.com.git.model.User" parameterType="String">
 		select username,password from user where username=#{username}
 	</select>
-
-	<insert id="regist">
+	
+	<!-- 查询所有用户 -->
+	<select id="findAll" resultType="cn.com.git.model.User" parameterType="String">
+		select username,password from user
+	</select>
+	
+	<!-- 添加用户 -->
+	<insert id="addUser">
 		insert into user(username,password) values (#{username},#{password})
 	</insert>
+	
+	<!-- 修改用户 -->
+	<update id="editUser">
+		update user set password = #{password} where username = #{username}
+	</update>
+	
+	<!-- 删除用户 -->
+	<delete id="delUser">
+		delete from user where username = #{username}
+	</delete>
 </mapper>

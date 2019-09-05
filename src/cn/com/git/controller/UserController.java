@@ -1,5 +1,7 @@
 package cn.com.git.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,8 +29,11 @@ public class UserController {
 		user = userService.findByName(user.getUsername(),user.getPassword());
 		//若有User则添加到model里并且跳转到成功页面
 		if(user != null) {
-			model.addAttribute("user",user.getUsername());
-			return "success";
+			model.addAttribute("username",user.getUsername());
+			return "mainpage";
+//			List<User> userList = userService.findAll();
+//			model.addAttribute("userList",userList);
+//			return "allUser";
 		}
 		return "fail";
 	}
@@ -43,15 +48,32 @@ public class UserController {
 	public String doRegist(User user,Model model) {
 		System.out.println(user.getUsername());
 		model.addAttribute("user",user.getUsername());
-		userService.regist(user);
+		userService.addUser(user);
 		return "success";
 	}
 	
+	/**
+	 * 获取所有用户列表
+	 * @return
+	 */
+	@RequestMapping("/findAll")
+	public String findAll(Model model) {
+		List<User> user = userService.findAll();
+		model.addAttribute("userList",user);
+		return "allUser";
+	}
 	
+	@RequestMapping("/editUser")
+	public String editUser(User user,Model model) {
+		userService.editUser(user);
+		return null;
+	}
 	
-	
-	
-	
+	@RequestMapping("/delUser")
+	public String delUser(String username) {
+		userService.delUser(username);
+		return null;
+	}
 	
 	
 	
